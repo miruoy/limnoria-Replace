@@ -73,6 +73,9 @@ class Replace(callbacks.Plugin):
         self._last[key] = text
 
     def doPrivmsg(self, irc, msg):
+        """Handles incoming PRIVMSGs: stores the last message for each user
+        and performs sed-style corrections when a message matches s/old/new/.
+        """
         # Always remember the last normal message (for correction).
         self._store_last(irc, msg)
 
