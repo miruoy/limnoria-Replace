@@ -116,8 +116,6 @@ class Replace(callbacks.Plugin):
         irc.reply(_('<%s> %s  (corrected by %s)') % (msg.nick, corrected, msg.nick),
                   to=msg.channel, private=False)
 
-    doPrivmsg = wrap(doPrivmsg)
-
     def die(self):
         super().die()
 
