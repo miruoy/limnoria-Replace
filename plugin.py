@@ -66,9 +66,10 @@ class Replace(callbacks.Plugin):
         if not msg.channel or not msg.nick:
             return
         key = (irc.network, msg.channel, msg.nick)
-        # Don't store the s/.../ command itself.
+        # Don't store a s/.../ correction command as a correctable message.
+        # Match both with and without a trailing slash.
         text = msg.args[1] if len(msg.args) > 1 else ''
-        if REPLACE_RE.match(text):
+        if text.startswith('s/') or text.startswith('@s/'):
             return
         self._last[key] = text
 
